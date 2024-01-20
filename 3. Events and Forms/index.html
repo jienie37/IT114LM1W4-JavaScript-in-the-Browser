@@ -31,10 +31,10 @@
 <!-- Add an inline event handler that logs "From inline event hanlder" when the button is clicked -->
 <!-- Resource: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#inline_event_handlers_%E2%80%94_dont_use_these
             - See other event listener mechanisms section -->
-<button>Call inline event handler</button>
+<button onclick="console.log('From inline event hanlder')">Call inline event handler</button>
 
 <!-- Todo 3.3a Create a button with the text "Call addEventListener" -->
-<button>Call addEventListener</button>
+<button id="add__event-button">Call addEventListener</button>
 
 <!-- Todo 3.4a Create a form that accepts the first name and last name of the user -->
 <form>
@@ -76,14 +76,23 @@
     <script>
         // Todo 3.1 When the page has loaded, log "The page has loaded"
         // Resource: https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
+        window.addEventListener('load', () => {
+            console.log("The page has loaded");
+        })
 
         // Todo 3.3b Add an event handler for the button created in 2.3a.
         //          The event handler should log "From addEventListener" when the button is clicked
         // Resource: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#using_addeventlistener
         //          - See Using addEventListener() section
+        document.getElementById('add__event-button'). addEventListener("click",() => { 
+            console.log("From addEvenetListener");
+        })
+
 
         // Checkpoint 3.1 What is the difference between inline event handlers and addEventListener? When should you use one over the other?
-        // Answer: 
+        // Answer: addEventListener is a method in JavaScript that allows developers to dynamically attach event handlers to HTML elements
+                //  
+
         
         // Todo 3.5 add event listenders for the grandparent, parent, and child divs. 
         //          When clicked, the grandparent, parent, and child should log "Grandparent", "Parent", and "Child" respectively
@@ -92,8 +101,22 @@
         const parent = document.querySelector(".parent")
         const child = document.querySelector(".child")
 
+        grandparent.addEventListener ('click', () => {
+            console.log("Grandparent");
+        })
+
+        parent.addEventListener ('click', (event) => {
+            event.stopPropagation();
+            console.log("Parent");
+        })
+
+        child.addEventListener ('click', () => {
+            console.log("Child");
+        })
+
         // Checkpoint 3.2 What is event bubbling? How was it shown in Todo 3.5?
-        // Answer: 
+        // Answer: It happens when an element receives an event, and that event bubbles up to its parent and ancestor elements in the DOM tree until it gets to the root element
+                //  it was shown in the activity when clicking the Parent and it shows grandparent was clicked
         
         // Bonus Todo 3.6 Change your code in the previous todo such that "grandparent" is displayed first
 

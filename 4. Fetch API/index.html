@@ -15,17 +15,87 @@
             // Resource: https://www.freecodecamp.org/news/how-to-fetch-data-from-an-api-using-the-fetch-api-in-javascript/
 
             // Checkpoint 4.1 What are HTTP requests and reponses? What are the various HTTP verbs and what do they do?
-            // Answer: 
+            // Answer: HTTP requests are messages sent by the client to initiate an action on the server
+                    //  Various HTTP verbs include GET (retrieve data), POST (submit data), PUT (update data), DELETE (delete data)
+
 
             // Todo 4.1 Fetch the list of users. Outout the first and second page of users.
+            fetch('https://reqres.in/api/users?page=1')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('error');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Users - Page 1:", data.data);
+                return fetch('https://reqres.in/api/users?page=2');
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('error');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Users - Page 2:", data.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+
+
 
             // Todo 4.2 Fetch the information about a single user. Display their information
+            const userId = 1; 
+
+            fetch(`https://reqres.in/api/users/${userId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('error');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("User:", data.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
 
             // Todo 4.3 Create a user
+            fetch('https://reqres.in/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: 'Jiengrey Crisostomp',
+                job: 'Student',
+            })})
 
             // Todo 4.4 Update the information of the user that you have created
+            const update__user = 1
+            fetch(`https://reqres.in/api/users/${update__user}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: 'John Santos',
+                job: 'Still Student',
+            })})
+
 
             // Todo 4.5 Delete the user that you have created
+            const user__delete = 1;
+            
+            fetch(`https://reqres.in/api/users/${user__delete}`, {
+            method: 'DELETE'})
+
+
 
             // Checkpoint 4.2 What is the difference between callbacks, then-catch vs await-try-catch? When should you use one over the other
             // Answer: 

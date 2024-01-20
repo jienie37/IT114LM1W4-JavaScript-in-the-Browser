@@ -31,31 +31,51 @@
 
         // Todo 2.1 Select the unordered list with the id "subjects-taken"
         // Resource: https://dev.to/alternate_robot/dom-selectors-in-javascript-344i
+        const subjects__list = document.getElementById("subjects-taken");
+
 
         // Checkpoint 2.1 What are the other ways to select elements in the DOM?
-        // Answer:
+        // Answer: document.querySelector(), document.querySelectorAll(), getElementsByClassName(), getElementsByTagName()
+
 
         // Todo 2.2 Set the text of the second list item to "IT102 - Python Fundamentals"
         // Resource: https://www.javascripttutorial.net/javascript-dom/javascript-get-child-element/
+        subjects__list.children[1].innerText = "IT102 - Python Fundamentals";
+
 
         // Checkpoint 3.2 What is the difference between innerText, textContent, and innerHTML. When should you use one over the other?
-        // Answer:
+        // Answer: innerText returns all text contained by an element and all its child elements
+                //  textContents is all text contained by an element and all its children that are for formatting purposes only
+                //  innerHtml returns all text, including html tags, that is contained by an element
+
 
         // Todo 2.3 Create another list item, and add it as a child of the unordered list
         //          Set the text of the list item to your favorite subject
         // Resource: https://www.javascripttutorial.net/dom/manipulating/create-a-dom-element/
+        const new__subject = document.createElement('li');
+        new__subject.innerText = "IT114";
+
 
         // Todo 2.4 Set the id attribute of the list item you created to "favorite-subject".
         //          Set the class of the list item to "newly-created"
+        new__subject.id = "favorite-subject";
+        new__subject.classList.add('newly-created');
+
 
         // Todo 2.5 Delete the third list item in the unordered list
+        subjects__list.removeChild(subjects__list.children[2]);
+
 
         // Checkpoint 2.3 What is the difference between node and element?
-        // Answer:
+        // Answer: Element is a specific type of Node that represents an HTML or XML element
+                //  Nodes are the individual building blocks of the DOM
+
 
         // Bonus Todo 2.6 Select the parent of the unordered list.
+        const parent__node = subjects__list.parentNode;
 
         // Bonus Todo 2.7 Select the previous sibling of the list item you previously created
+        const previous__sibling = new__subject.previousElementSibling;
     </script>
 </body>
 
